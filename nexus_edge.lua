@@ -1,6 +1,6 @@
 -- =========================================================
--- SYSTEM: NEXUS EDGE V1.0 (COMPLETE EDITION)
--- CORE MODULES: DEF-V2 & WAR-BLACKMARKET RECONSTRUCTED
+-- SYSTEM: NEXUS EDGE v1.0 (EDICIÓN COMPLETA)
+-- INTERFAZ TOTALMENTE EN ESPAÑOL - SMITH LUQUE
 -- =========================================================
 
 gg.setVisible(false)
@@ -333,7 +333,7 @@ Lily fa_06_movies
 Liquidador ff_09
 Litominero Stellariano ec_12
 Llama Sensei dd_13
-Loco de la Motosierra bc_05
+Loco de la Modosierra bc_05
 Lord Blood bb_01
 Louis XVI db_04
 Mad Mike de_10
@@ -563,61 +563,33 @@ if #raw_mutants > 10 then
     end
 end
 
--- Estructuras de Datos Globales para Reactores
 local originalHex, newHex, originalSpecimens, newSpecimens = nil, nil, nil, nil
 local reactorReady = false
 
 local reactorDB = {
-    [1] = { name = "The Steampunk", packHex = "h12737465616D70756E6B0000000000000000000000000000010000007E0400002867616368615F7061636B5F737465616D70756E6B000000", specs = {":Specimen_BF_02", ":Specimen_EC_01", ":Specimen_AB_01", ":Specimen_AB_01", ":Specimen_AC_02", ":Specimen_AD_01"} },
-    [2] = { name = "Girl Power", packHex = "h086769726C0000000000000000000000000000000000000001000000650400001E67616368615F7061636B5F6769726C0000000000000000", specs = {":Specimen_AA_01", ":Specimen_CB_01", ":Specimen_CD_01", ":Specimen_FB_01", ":Specimen_FB_01", ":Specimen_CF_01"} },
-    [3] = { name = "Mutants Super-Heroes", packHex = "h0C6865726F65730000000000000000000000000000000000020000003A0700002267616368615F7061636B5F6865726F6573000000000000", specs = {":Specimen_FC_02", ":Specimen_AE_01", ":Specimen_BB_01", ":Specimen_CA_01", ":Specimen_FA_01", ":Specimen_EF_02"} },
-    [4] = { name = "Gothic", packHex = "h0C676F746869630000000000000000000000000000000000010000007E0400002267616368615F7061636B5F6769726C0000000000000000", specs = {":Specimen_CE_01", ":Specimen_BF_01", ":Specimen_DC_01", ":Specimen_FD_01", ":Specimen_AA_02", ":Specimen_DC_03"} },
-    [5] = { name = "Japan", packHex = "h0A6A6170616E00000000000000000000000000000000000003000000FC0800002067616368615F7061636B5F6A6170616E00000000000000", specs = {":Specimen_CC_01", ":Specimen_CC_01", ":Specimen_DF_01", ":Specimen_BA_02", ":Specimen_CB_02", ":Specimen_FD_03"} },
-    [6] = { name = "Space War", packHex = "h10737461727761727300000000000000000000000000000003000000FC0800002667616368615F7061636B5F737461727761727300000000", specs = {":Specimen_AF_04", ":Specimen_CC_03", ":Specimen_CD_01", ":Specimen_EC_01", ":Specimen_BC_01", ":Specimen_BF_04"} },
-    [7] = { name = "Mutants-Super-Villains", packHex = "h1076696C6C61696E7300000000000000000000000000000003000000FC0800002667616368615F7061636B5F76696C6C61696E7300000000", specs = {":Specimen_DA_01", ":Specimen_DA_01", ":Specimen_AB_02", ":Specimen_EC_03", ":Specimen_BA_03", ":Specimen_CE_05"} },
-    [8] = { name = "Big Boss", packHex = "h126761636861626F7373000000000000000000000000000003000000FC0800002867616368615F7061636B5F6761636861626F7373000000", specs = {":Specimen_FF_01", ":Specimen_FF_01", ":Specimen_FB_03", ":Specimen_DB_01", ":Specimen_EA_01", ":Specimen_AB_05"} },
-    [9] = { name = "Movies", packHex = "h0C6D6F76696573000000000000000000000000000000000003000000FC0800002267616368615F7061636B5F6D6F76696573000000000000", specs = {":Specimen_ED_03", ":Specimen_EB_04", ":Specimen_CB_03", ":Specimen_BD_03", ":Specimen_CC_02", ":Specimen_FA_06"} },
-    [10] = { name = "God Of The Arena", packHex = "h126F6C796D7069616E73000000000000000000000000000003000000FC0800002867616368615F7061636B5F6F6C796D7069616E73000000", specs = {":Specimen_CC_04", ":Specimen_AC_01", ":Specimen_BC_02", ":Specimen_BB_03", ":Specimen_CE_03", ":Specimen_EC_06"} },
-    [11] = { name = "Elements Squad", packHex = "h10656C656D656E747300000000000000000000000000000003000000FC0800002667616368615F7061636B5F656C656D656E747300000000", specs = {":Specimen_EF_01", ":Specimen_EB_02", ":Specimen_BD_04", ":Specimen_EB_05", ":Specimen_DF_04", ":Specimen_EB_06"} },
-    [12] = { name = "Time Soldiers", packHex = "h10736F6C646965727300000000000000000000000000000003000000FC0800002667616368615F7061636B5F736F6C646965727300000000", specs = {":Specimen_AB_04", ":Specimen_CF_02", ":Specimen_BC_04", ":Specimen_AD_05", ":Specimen_CD_06", ":Specimen_BD_07"} },
-    [13] = { name = "Lucha Libre", packHex = "h0A6C7563686100000000000000000000000000000000000004000000C40900002067616368615F7061636B5F6C7563686100000000000000", specs = {":Specimen_CF_03", ":Specimen_DE_04", ":Specimen_DC_05", ":Specimen_FE_04", ":Specimen_BE_05", ":Specimen_AC_07"} },
-    [14] = { name = "Dark Fantasy", packHex = "h0E66616E746173790000000000000000000000000000000004000000C40900002467616368615F7061636B5F66616E746173790000000000", specs = {":Specimen_FC_04", ":Specimen_FC_05", ":Specimen_DB_06", ":Specimen_AC_03", ":Specimen_BD_05", ":Specimen_FC_09"} },
-    [15] = { name = "Music", packHex = "h0A6D7573696300000000000000000000000000000000000004000000C40900002067616368615F7061636B5F6D7573696300000000000000", specs = {":Specimen_AA_03", ":Specimen_BF_06", ":Specimen_EE_04", ":Specimen_FB_05", ":Specimen_DE_05", ":Specimen_DA_09"} },
-    [16] = { name = "Western", packHex = "h0E7765737465726E0000000000000000000000000000000004000000C40900002467616368615F7061636B5F7765737465726E0000000000", specs = {":Specimen_FF_06", ":Specimen_FC_07", ":Specimen_AA_06", ":Specimen_DB_04", ":Specimen_CF_06", ":Specimen_BF_10"} },
-    [17] = { name = "Tropical", packHex = "h0A626561636800000000000000000000000000000000000004000000C40900002067616368615F7061636B5F626561636800000000000000", specs = {":Specimen_FE_08", ":Specimen_EE_07", ":Specimen_BB_08", ":Specimen_AB_07", ":Specimen_AF_08", ":Specimen_CA_11"} },
-    [18] = { name = "Photosynthesis", packHex = "h0E7665676574616C0000000000000000000000000000000005000000C40900002467616368615F7061636B5F7665676574616C0000000000", specs = {":Specimen_BB_02", ":Specimen_DC_08", ":Specimen_AF_01", ":Specimen_DE_09", ":Specimen_CA_06", ":Specimen_DF_12"} },
-    [19] = { name = "Bloody Games", packHex = "h106F6C796D7069637300000000000000000000000000000005000000C40900002667616368615F7061636B5F6F6C796D7069637300000000", specs = {":Specimen_FA_08", ":Specimen_CA_02", ":Specimen_FD_06", ":Specimen_CA_07", ":Specimen_CA_08", ":Specimen_CA_14"} },
-    [20] = { name = "Checkmate", packHex = "h0A636865737300000000000000000000000000000000000005000000C40900002067616368615F7061636B5F636865737300000000000000", specs = {":Specimen_CF_04", ":Specimen_FE_06", ":Specimen_BA_06", ":Specimen_AC_04", ":Specimen_AC_04", ":Specimen_CC_14"} }
+    [1] = { name = "Estilo Steampunk", packHex = "h12737465616D70756E6B0000000000000000000000000000010000007E0400002867616368615F7061636B5F737465616D70756E6B000000", specs = {":Specimen_BF_02", ":Specimen_EC_01", ":Specimen_AB_01", ":Specimen_AB_01", ":Specimen_AC_02", ":Specimen_AD_01"} },
+    [2] = { name = "Poder Femenino (Girl Power)", packHex = "h086769726C0000000000000000000000000000000000000001000000650400001E67616368615F7061636B5F6769726C0000000000000000", specs = {":Specimen_AA_01", ":Specimen_CB_01", ":Specimen_CD_01", ":Specimen_FB_01", ":Specimen_FB_01", ":Specimen_CF_01"} },
+    [3] = { name = "Súper Héroes Mutantes", packHex = "h0C6865726F65730000000000000000000000000000000000020000003A0700002267616368615F7061636B5F6865726F6573000000000000", specs = {":Specimen_FC_02", ":Specimen_AE_01", ":Specimen_BB_01", ":Specimen_CA_01", ":Specimen_FA_01", ":Specimen_EF_02"} },
+    [4] = { name = "Fantasía Gótica", packHex = "h0C676F746869630000000000000000000000000000000000010000007E0400002267616368615F7061636B5F6769726C0000000000000000", specs = {":Specimen_CE_01", ":Specimen_BF_01", ":Specimen_DC_01", ":Specimen_FD_01", ":Specimen_AA_02", ":Specimen_DC_03"} },
+    [5] = { name = "Invasión de Japón", packHex = "h0A6A6170616E00000000000000000000000000000000000003000000FC0800002067616368615F7061636B5F6A6170616E00000000000000", specs = {":Specimen_CC_01", ":Specimen_CC_01", ":Specimen_DF_01", ":Specimen_BA_02", ":Specimen_CB_02", ":Specimen_FD_03"} },
+    [6] = { name = "Guerra del Espacio (Space War)", packHex = "h10737461727761727300000000000000000000000000000003000000FC0800002667616368615F7061636B5F737461727761727300000000", specs = {":Specimen_AF_04", ":Specimen_CC_03", ":Specimen_CD_01", ":Specimen_EC_01", ":Specimen_BC_01", ":Specimen_BF_04"} },
+    [7] = { name = "Súper Villanos", packHex = "h1076696C6C61696E7300000000000000000000000000000003000000FC0800002667616368615F7061636B5F76696C6C61696E7300000000", specs = {":Specimen_DA_01", ":Specimen_DA_01", ":Specimen_AB_02", ":Specimen_EC_03", ":Specimen_BA_03", ":Specimen_CE_05"} },
+    [8] = { name = "Jefes Supremos (Big Boss)", packHex = "h126761636861626F7373000000000000000000000000000003000000FC0800002867616368615F7061636B5F6761636861626F7373000000", specs = {":Specimen_FF_01", ":Specimen_FF_01", ":Specimen_FB_03", ":Specimen_DB_01", ":Specimen_EA_01", ":Specimen_AB_05"} },
+    [9] = { name = "Estrellas de Cine", packHex = "h0C6D6F76696573000000000000000000000000000000000003000000FC0800002267616368615F7061636B5F6D6F76696573000000000000", specs = {":Specimen_ED_03", ":Specimen_EB_04", ":Specimen_CB_03", ":Specimen_BD_03", ":Specimen_CC_02", ":Specimen_FA_06"} },
+    [10] = { name = "Dioses de la Arena", packHex = "h126F6C796D7069616E73000000000000000000000000000003000000FC0800002867616368615F7061636B5F6F6C796D7069616E73000000", specs = {":Specimen_CC_04", ":Specimen_AC_01", ":Specimen_BC_02", ":Specimen_BB_03", ":Specimen_CE_03", ":Specimen_EC_06"} },
+    [11] = { name = "Escuadrón Elemental", packHex = "h10656C656D656E747300000000000000000000000000000003000000FC0800002667616368615F7061636B5F656C656D656E747300000000", specs = {":Specimen_EF_01", ":Specimen_EB_02", ":Specimen_BD_04", ":Specimen_EB_05", ":Specimen_DF_04", ":Specimen_EB_06"} },
+    [12] = { name = "Soldados del Tiempo", packHex = "h10736F6C646965727300000000000000000000000000000003000000FC0800002667616368615F7061636B5F736F6C646965727300000000", specs = {":Specimen_AB_04", ":Specimen_CF_02", ":Specimen_BC_04", ":Specimen_AD_05", ":Specimen_CD_06", ":Specimen_BD_07"} },
+    [13] = { name = "Pistas de Lucha Libre", packHex = "h0A6C7563686100000000000000000000000000000000000004000000C40900002067616368615F7061636B5F6C7563686100000000000000", specs = {":Specimen_CF_03", ":Specimen_DE_04", ":Specimen_DC_05", ":Specimen_FE_04", ":Specimen_BE_05", ":Specimen_AC_07"} },
+    [14] = { name = "Fantasía Oscura", packHex = "h0E66616E746173790000000000000000000000000000000004000000C40900002467616368615F7061636B5F66616E746173790000000000", specs = {":Specimen_FC_04", ":Specimen_FC_05", ":Specimen_DB_06", ":Specimen_AC_03", ":Specimen_BD_05", ":Specimen_FC_09"} },
+    [15] = { name = "Ritmo y Música", packHex = "h0A6D7573696300000000000000000000000000000000000004000000C40900002067616368615F7061636B5F6D7573696300000000000000", specs = {":Specimen_AA_03", ":Specimen_BF_06", ":Specimen_EE_04", ":Specimen_FB_05", ":Specimen_DE_05", ":Specimen_DA_09"} },
+    [16] = { name = "Lejano Oeste (Western)", packHex = "h0E7765737465726E0000000000000000000000000000000004000000C40900002467616368615F7061636B5F7765737465726E0000000000", specs = {":Specimen_FF_06", ":Specimen_FC_07", ":Specimen_AA_06", ":Specimen_DB_04", ":Specimen_CF_06", ":Specimen_BF_10"} },
+    [17] = { name = "Zona Tropical y Playa", packHex = "h0A626561636800000000000000000000000000000000000004000000C40900002067616368615F7061636B5F626561636800000000000000", specs = {":Specimen_FE_08", ":Specimen_EE_07", ":Specimen_BB_08", ":Specimen_AB_07", ":Specimen_AF_08", ":Specimen_CA_11"} },
+    [18] = { name = "Fotosíntesis Botánica", packHex = "h0E7665676574616C0000000000000000000000000000000005000000C40900002467616368615F7061636B5F7665676574616C0000000000", specs = {":Specimen_BB_02", ":Specimen_DC_08", ":Specimen_AF_01", ":Specimen_DE_09", ":Specimen_CA_06", ":Specimen_DF_12"} },
+    [19] = { name = "Juegos Sangrientos", packHex = "h106F6C796D7069637300000000000000000000000000000005000000C40900002667616368615F7061636B5F6F6C796D7069637300000000", specs = {":Specimen_FA_08", ":Specimen_CA_02", ":Specimen_FD_06", ":Specimen_CA_07", ":Specimen_CA_08", ":Specimen_CA_14"} },
+    [20] = { name = "Jaque Mate (Ajedrez)", packHex = "h0A636865737300000000000000000000000000000000000005000000C40900002067616368615F7061636B5F636865737300000000000000", specs = {":Specimen_CF_04", ":Specimen_FE_06", ":Specimen_BA_06", ":Specimen_AC_04", ":Specimen_AC_04", ":Specimen_CC_14"} }
 }
 
-function InitTerminal()
-    local power = gg.alert([[
-    ┌────────────────────────────────────────┐
-               NEXUS EDGE INTERFACE v1.0       
-    └────────────────────────────────────────┘
-    🧬 COMBINED ENGINE AUTOMATION ACTIVE
-    
-    [+] MGG Database: Loaded.
-    [+] Execution Ring: Ready.
-    [+] Safety Alert: Use at your own risk.
-    
-    Select 'CONTINUE' to unlock control matrix.
-    ]], "CONTINUE", "TERMINATE")
-    
-    if power == 1 then
-        gg.toast("Matrix Initialization: Successful.")
-        gg.showUiButton()
-        ConsoleMain()
-    else
-        os.exit()
-    end
-end
-
--- =========================================================
--- MODULE 1: INJECTORS & UTILITIES (ANCIENT CODES)
--- =========================================================
-
-function ClearAndVerify()
+function LimpiarYVerificar()
     gg.setVisible(false)
     gg.clearResults()
     gg.searchNumber(":Allowed", gg.TYPE_BYTE)
@@ -626,8 +598,8 @@ function ClearAndVerify()
     gg.clearResults()
 end
 
-function OpenBankStructures()
-    gg.toast("Injecting Medlabs & Furnace Overrides...")
+function AbrirEstructurasBanco()
+    gg.toast("Inyectando Laboratorios y Hornos Avanzados...")
     gg.setVisible(false)
     gg.clearResults()
     
@@ -659,18 +631,18 @@ function OpenBankStructures()
     gg.editAll("h 1a 42 75 69 6c 64 69 6e 67 5f 48 43 5f 32", gg.TYPE_BYTE)
     gg.clearResults()
     
-    gg.toast("Bank assets replaced. Check Store Vaults.")
+    gg.toast("Estructuras de banco reemplazadas con éxito.")
 end
 
-function QuickOrbsUtility()
+function UtilidadOrbesRapidas()
     local oMenu = gg.choice({
-        "⚡ Instant Speed Multiplier (x5 Visual)",
-        "💠 Target Orbs: EXP Tier 4 Inversion",
-        "⚔️ Target Orbs: ATK Tier 7 Generator",
-        "🔮 Core Orbs: Unlock Tier 6 Bundles",
-        "💥 Structural Orbs: Core 6 ATK/VD/CRIT",
-        "🔙 RETURN TO SYSTEM"
-    }, nil, "/// NODE: ORB MODIFICATION CENTER")
+        "⚡ Multiplicador de Velocidad Instantáneo (x5 Visual)",
+        "💠 Inversión de Orbes de EXP: Nivel 4",
+        "⚔️ Inversión de Orbes de ATK: Nivel 7",
+        "🔮 Desbloquear Paquetes de Orbes Básicos: Nivel 6",
+        "💥 Orbes de Control Estructural: Poder Nivel 6",
+        "🔙 VOLVER AL MENÚ DE INICIO"
+    }, nil, "⚙️ PANEL DE MODIFICACIÓN DE ORBES")
 
     if oMenu == 1 then
         gg.setVisible(false)
@@ -687,14 +659,14 @@ function QuickOrbsUtility()
         r = gg.getResults(100000)
         gg.editAll("1500", gg.TYPE_DWORD)
         gg.clearResults()
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.processResume()
         gg.timeJump("5:0")
     elseif oMenu == 2 then
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.searchNumber(":*bundle_orbs_slash_4_2", gg.TYPE_BYTE, false, gg.SIGN_EQUAL, 0, -1, 0)
         local t = gg.getResults(1)
-        if #t == 0 then gg.alert("Structure Missed.") return end
+        if #t == 0 then gg.alert("Estructura no encontrada.") return end
         for _, v in ipairs(t) do
             v.address = v.address + 0x378
             v.flags = gg.TYPE_BYTE
@@ -721,10 +693,10 @@ function QuickOrbsUtility()
         gg.processResume()
         gg.timeJump("5:0")
     elseif oMenu == 4 then
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.searchNumber(":(bundle_orbs_basic_06", gg.TYPE_BYTE, false, gg.SIGN_EQUAL, 0, -1, 0)
         local t = gg.getResults(1)
-        if #t == 0 then gg.alert("Structure Missed.") return end
+        if #t == 0 then gg.alert("Estructura no encontrada.") return end
         for _, v in ipairs(t) do
             v.address = v.address - 0x38
             v.flags = gg.TYPE_BYTE
@@ -738,10 +710,10 @@ function QuickOrbsUtility()
         gg.processResume()
         gg.timeJump("5:0")
     elseif oMenu == 5 then
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.searchNumber(":&bundle_orbs_core_06", gg.TYPE_BYTE, false, gg.SIGN_EQUAL, 0, -1, 1)
         local t = gg.getResults(1)
-        if #t == 0 then gg.alert("Structure Missed.") return end
+        if #t == 0 then gg.alert("Estructura no encontrada.") return end
         for _, v in ipairs(t) do
             v.address = v.address - 0x38
             v.flags = gg.TYPE_BYTE
@@ -757,11 +729,7 @@ function QuickOrbsUtility()
     end
 end
 
--- =========================================================
--- MODULE 2: RECON / SECTOR VAULTS (BOXES & ARTIFACTS)
--- =========================================================
-
-function VaultsInjector(mode)
+function InyectorCajas(mode)
     gg.setVisible(false)
     gg.clearResults()
     gg.searchNumber(":Allowed", gg.TYPE_BYTE)
@@ -769,7 +737,7 @@ function VaultsInjector(mode)
     if #r > 0 then gg.editAll("0", gg.TYPE_BYTE) end
     gg.clearResults()
 
-    local function writeData(sig, datatype, offset)
+    local function patch(sig, datatype, offset)
         gg.clearResults()
         gg.searchNumber(sig, datatype, false, gg.SIGN_EQUAL, 0, -1, 0)
         local data = gg.getResults(100)
@@ -784,39 +752,39 @@ function VaultsInjector(mode)
     end
 
     if mode == "ALL" or mode == "SET1" then
-        writeData("1,986,289,960;1,601,465,957;1,701,601,635;1,918,985,326", gg.TYPE_DWORD, 0xffffffffffffffbc)
-        writeData("1,836,605,296;1,650,422,625;1,650,423,919;6,649,196", gg.TYPE_DWORD, 0xffffffffffffffbc)
-        writeData("1,836,605,296;1,650,422,625;1,734,309,999;1,852,138,866", gg.TYPE_DWORD, 0xffffffffffffffbc)
-        writeData("1,836,605,296;1,650,422,625;1,918,859,375;25,701", gg.TYPE_DWORD, 0xffffffffffffffbc)
+        patch("1,986,289,960;1,601,465,957;1,701,601,635;1,918,985,326", gg.TYPE_DWORD, 0xffffffffffffffbc)
+        patch("1,836,605,296;1,650,422,625;1,650,423,919;6,649,196", gg.TYPE_DWORD, 0xffffffffffffffbc)
+        patch("1,836,605,296;1,650,422,625;1,734,309,999;1,852,138,866", gg.TYPE_DWORD, 0xffffffffffffffbc)
+        patch("1,836,605,296;1,650,422,625;1,918,859,375;25,701", gg.TYPE_DWORD, 0xffffffffffffffbc)
     end
 
     if mode == "ALL" or mode == "SET2" then
-        writeData("1,852,727,596;1,919,252,073;2,037,539,187;2,020,565,599", gg.TYPE_DWORD, 0xffffffffffffffc0)
-        writeData("1,839,605,296;1,650,422,625;1,650,423,919;6,649,196", gg.TYPE_DWORD, 0xffffffffffffffbc)
-        writeData("1,839,605,296;1,650,422,625;1,734,309,999;1,852,138,866", gg.TYPE_DWORD, 0xffffffffffffffbc)
-        writeData("1,839,605,296;1,650,422,625;1,918,859,375;25,701", gg.TYPE_DWORD, 0xffffffffffffffbc)
+        patch("1,852,727,596;1,919,252,073;2,037,539,187;2,020,565,599", gg.TYPE_DWORD, 0xffffffffffffffc0)
+        patch("1,839,605,296;1,650,422,625;1,650,423,919;6,649,196", gg.TYPE_DWORD, 0xffffffffffffffbc)
+        patch("1,839,605,296;1,650,422,625;1,734,309,999;1,852,138,866", gg.TYPE_DWORD, 0xffffffffffffffbc)
+        patch("1,839,605,296;1,650,422,625;1,918,859,375;25,701", gg.TYPE_DWORD, 0xffffffffffffffbc)
     end
 
     gg.processResume()
     gg.timeJump("5:0")
-    gg.toast("Vault data rewritten successfully.")
+    gg.toast("Registros de almacenamiento alterados con éxito.")
 end
 
-function AdvancedBoxesMenu()
+function MenuCajasAvanzado()
     local bMenu = gg.choice({
-        "📦 Complete Master Injection (All Tiers)",
-        "🎄 Cluster Alpha: Seasonal / Winter Drops",
-        "💎 Cluster Beta: High-Tier / Special Stock",
-        "🎰 Jackpots Vector: Force Box 25 Address",
-        "🧴 Liquid Assets: Force XP Jars Data",
-        "🔙 RETURN TO SYSTEM"
-    }, nil, "/// NODE: QUANTUM STORAGE BYPASS")
+        "📦 Inyección Maestra Completa (Todos los Grupos)",
+        "🎄 Grupo Alfa: Cajas Temáticas Navideñas",
+        "💎 Grupo Beta: Cajas de Élite y Especiales",
+        "🎰 Vector Jackpot: Forzar Dirección de Caja 25",
+        "🧴 Frascos Líquidos: Forzar Datos de Tarros EXP",
+        "🔙 VOLVER AL MENÚ DE INICIO"
+    }, nil, "⚙️ SECCIÓN DE ALMACENAMIENTO QUANTUM")
 
-    if bMenu == 1 then VaultsInjector("ALL")
-    elseif bMenu == 2 then VaultsInjector("SET1")
-    elseif bMenu == 3 then VaultsInjector("SET2")
+    if bMenu == 1 then InyectorCajas("ALL")
+    elseif bMenu == 2 then InyectorCajas("SET1")
+    elseif bMenu == 3 then InyectorCajas("SET2")
     elseif bMenu == 4 then
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.searchNumber("h28416E6E697665727361727932335F426F785F3235000000106D6174657269616C000000", gg.TYPE_BYTE, false, gg.SIGN_EQUAL, 0, -1, 0)
         local start = gg.getResults(1)
         local mods = {}
@@ -828,7 +796,7 @@ function AdvancedBoxesMenu()
         gg.processResume()
         gg.timeJump("5:0")
     elseif bMenu == 5 then
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.searchNumber("h2C416E6E69766572736172795F323031395F426F785F3900106D6174657269616C000000", gg.TYPE_BYTE, false, gg.SIGN_EQUAL, 0, -1, 0)
         local start = gg.getResults(1)
         local mods = {}
@@ -842,11 +810,7 @@ function AdvancedBoxesMenu()
     end
 end
 
--- =========================================================
--- MODULE 3: BIOMETRIC EXCHANGE (INDIVIDUAL MATRIX SWAP)
--- =========================================================
-
-function IntersectSearch(title)
+function BuscarInterseccion(title)
     local query = gg.prompt({title}, nil, {"text"})
     if not query then return nil end
     
@@ -861,66 +825,66 @@ function IntersectSearch(title)
     end
     
     if #filtered == 0 then 
-        gg.alert("[-] Matrix Target Not Found.") 
+        gg.alert("[-] Objetivo no localizado en la lista interna.") 
         return nil 
     end
     
-    local selection = gg.choice(render, nil, "Matches Found:")
+    local selection = gg.choice(render, nil, "Resultados Encontrados:")
     if not selection then return nil end
     
     return filtered[selection].code
 end
 
-function ExecuteDirectSwap(base, replacement)
+function EjecutarCambioDirecto(base, replacement)
     gg.clearResults()
     gg.setRanges(gg.REGION_ANONYMOUS | gg.REGION_C_ALLOC | gg.REGION_OTHER)
-    gg.toast("Realigning string sequence: " .. base)
+    gg.toast("Realineando secuencias de texto: " .. base)
     
     gg.searchNumber(":" .. base, gg.TYPE_BYTE)
     local count = gg.getResultsCount()
     
     if count == 0 then
-        gg.alert("[-] Target String Missing in Memory Layer.")
+        gg.alert("[-] Error: El mutante base no se encuentra en esta pantalla del juego.")
         return
     end
     
     if count > 3000 then
-        gg.alert("[!] Sequence Overload ("..count.." matches). Shift game scenery.")
+        gg.alert("[!] Demasiados resultados ("..count.."). Cambia de pestaña para limpiar la memoria.")
         gg.clearResults()
         return
     end
     
     gg.getResults(count)
     gg.editAll(":" .. replacement, gg.TYPE_BYTE)
-    gg.toast("[+] Re-indexing complete: " .. count .. " paths mutated.")
+    gg.toast("[+] Re-indexación exitosa: " .. count .. " cadenas mutadas.")
     gg.clearResults() 
 end
 
-function IndividualSwapperEngine()
+function MotorCambiadorIndividual()
     while true do
         local opt = gg.choice({
-            "🔍 SEARCH MATRIX BY NAME (Dual Verification)",
-            "⌨️ MANUAL CODE INJECTION (Raw Hex String)",
-            "📋 EXTRACT GENETIC SIGNATURE TO CLIPBOARD",
-            "🔙 RETURN TO MAIN CONSOLE"
-        }, nil, "/// NODE: GENETIC MATRIX ALIGNMENT")
+            "🔍 BUSCAR POR NOMBRE (Doble Verificación)",
+            "⌨️ AGREGAR CÓDIGO MANUAL (ID de Texto exacto)",
+            "📋 COPIAR FIRMA GENÉTICA AL PORTAPAPELES",
+            "🔙 VOLVER AL MENÚ DE INICIO"
+        }, nil, "⚙️ SECCIÓN: ALINEACIÓN MATRICIAL INDIVIDUAL")
         
         if opt == 1 then
-            local current = IntersectSearch("Input Asset to Replace:")
+            local current = BuscarInterseccion("Mutante actual en tu pantalla:")
             if current then
-                local desired = IntersectSearch("Input Target Matrix Asset:")
-                if desired then ExecuteDirectSwap(current, desired) end
+                local desired = BuscarInterseccion("Mutante nuevo que deseas obtener:")
+                if desired then EjecutarCambioDirecto(current, desired) end
             end
         elseif opt == 2 then
-            local hex_prompts = gg.prompt({"Current ID (e.g., AA_01)", "Target ID (e.g., EE_02)"}, {"", ""})
+            local hex_prompts = gg.prompt({"ID Actual (Ej: AA_01)", "ID Nuevo (Ej: EE_02)"}, {"", ""})
             if hex_prompts and hex_prompts[1] ~= "" and hex_prompts[2] ~= "" then
-                ExecuteDirectSwap(string.upper(hex_prompts[1]), string.upper(hex_prompts[2]))
+                EjecutarCambioDirecto(string.upper(hex_prompts[1]), string.upper(hex_prompts[2]))
             end
         elseif opt == 3 then
-            local target_sig = IntersectSearch("Locate Variant:")
+            local target_sig = BuscarInterseccion("Selecciona variante a copiar:")
             if target_sig then
                 gg.copyText(target_sig)
-                gg.toast("Copied to System Buffer: " .. target_sig)
+                gg.toast("Código copiado al búfer: " .. target_sig)
             end
         elseif opt == 4 or opt == nil then
             break
@@ -928,19 +892,15 @@ function IndividualSwapperEngine()
     end
 end
 
--- =========================================================
--- MODULE 4: BULK MODIFIERS & CORE OVERIDES
--- =========================================================
-
-function HeavyOverridesEngine()
+function MotorAnulacionesPesadas()
     local hoMenu = gg.choice({
-        "🪐 Unlock Global Catalog (Force Specimen Arrays)",
-        "🔥 Mass Package Inversion (All Shop Bundles)",
-        "🛡️ Combat State Bypass (Ready Fight Locker)",
-        "🌿 Duo Vector: Force Buranka & Britany Assets",
-        "🛑 Market Stagnation (Lock Active Flash Offers)",
-        "🔙 RETURN TO MAIN CONSOLE"
-    }, nil, "/// NODE: HEAVY KERNEL OVERRIDES")
+        "🪐 Desbloquear Catálogo Global (Forzar Muestras)",
+        "🔥 Inversión Masiva de Paquetes (Tienda Completa)",
+        "🛡️ Omitir Estado de Espera (Pelea Lista)",
+        "🌿 Vector Dual: Forzar Cadenas Buranka y Britany",
+        "🛑 Estabilizador de Mercado (Congelar Ofertas Flash)",
+        "🔙 VOLVER AL MENÚ DE INICIO"
+    }, nil, "⚙️ SECCIÓN: ANULACIONES DE NÚCLEO")
 
     if hoMenu == 1 then
         gg.setVisible(false)
@@ -964,11 +924,11 @@ function HeavyOverridesEngine()
         end
         gg.processResume()
         gg.timeJump("5:0")
-        gg.toast("Catalog Inversion Sequence Completed.")
+        gg.toast("Secuencia de inversión de catálogo finalizada.")
     elseif hoMenu == 2 then
         gg.setVisible(false)
         gg.processPause()
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.sleep(500)
         
         local wordList = {"62 75 6e 64 6c 65", "42 75 6e 64 6c 65", "70 61 63 6b", "50 61 63 6b"}
@@ -985,7 +945,7 @@ function HeavyOverridesEngine()
             end
         end
         gg.processResume()
-        gg.toast("Market bundles updated.")
+        gg.toast("Paquetes de tienda actualizados.")
     elseif hoMenu == 3 then
         gg.setVisible(false)
         gg.clearResults()
@@ -999,8 +959,9 @@ function HeavyOverridesEngine()
             gg.addListItems(results)
         end
         gg.clearResults()
+        gg.toast("Bloqueo de combate activo.")
     elseif hoMenu == 4 then
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.searchNumber(":&Bundle_Mutants_Fire", gg.TYPE_BYTE, false, gg.SIGN_EQUAL, 0, -1, 0)
         local t = gg.getResults(1)
         if #t > 0 then
@@ -1017,22 +978,19 @@ function HeavyOverridesEngine()
         gg.clearResults()
         gg.processResume()
         gg.timeJump("5:0")
+        gg.toast("Fusión Buranka & Britany inyectada.")
     elseif hoMenu == 5 then
-        ClearAndVerify()
+        LimpiarYVerificar()
         gg.timeJump("5:0")
-        gg.toast("Offers frozen in current instance state.")
+        gg.toast("Ofertas flash congeladas en la instancia actual.")
     end
 end
 
--- =========================================================
--- MODULE 5: CHAMBER ARRAY EXCHANGE (REACTOR MUTATION)
--- =========================================================
-
-function ReactorCommit()
+function ComprometerReactor()
     gg.setVisible(false)
     gg.clearResults()
     if not reactorReady then
-        gg.alert("Matrix alignment undefined. Please run 'Setup Configuration Matrix' first.")
+        gg.alert("Matriz de alineación vacía. Configura primero las opciones en 'Emparejar Reactores'.")
         return
     end
     gg.searchNumber(originalHex, gg.TYPE_BYTE)
@@ -1046,19 +1004,19 @@ function ReactorCommit()
         gg.editAll(":" .. newSpecimens[i], gg.TYPE_BYTE)
         gg.clearResults()
     end
-    gg.toast("Reactor structure successfully transposed.")
+    gg.toast("Estructura del reactor transpuesta exitosamente.")
     originalHex, newHex, originalSpecimens, newSpecimens = nil, nil, nil, nil
     reactorReady = false
 end
 
-function ReactorSetupMenu()
+function MenuConfiguracionReactor()
     local names = {}
     for _, v in ipairs(reactorDB) do table.insert(names, v.name) end
     
-    local sourceSel = gg.choice(names, nil, "CHAMBER MATRIX SWAP [1/2]\nSelect TARGET layout:")
+    local sourceSel = gg.choice(names, nil, "⚙️ INTERCAMBIO DE REACTORES [Paso 1/2]\nSelecciona el reactor que DESEAS OBTENER:")
     if sourceSel == nil then return end
     
-    local destSel = gg.choice(names, nil, "CHAMBER MATRIX SWAP [2/2]\nSelect BASE layout to overwrite:")
+    local destSel = gg.choice(names, nil, "⚙️ INTERCAMBIO DE REACTORES [Paso 2/2]\nSelecciona el reactor que vas a REEMPLAZAR:")
     if destSel == nil then return end
 
     originalHex = reactorDB[destSel].packHex
@@ -1067,48 +1025,44 @@ function ReactorSetupMenu()
     newSpecimens = reactorDB[sourceSel].specs
 
     reactorReady = true
-    gg.toast("Setup complete. Choose 'Execute Chamber Transposition'.")
+    gg.toast("Alineación lista. Selecciona 'Aplicar Hack de Reactor'.")
 end
 
-function ReactorCoreEngine()
+function MotorReactores()
     while true do
         local rMenu = gg.choice({
-            "🎛️ Setup Configuration Matrix (Target vs Base)",
-            "⚡ Execute Chamber Transposition (Commit Values)",
-            "🔙 RETURN TO MAIN CONSOLE"
-        }, nil, "/// NODE: CRYOGENIC CHAMBER RE-ALIGNED")
+            "🎛️ Emparejar Reactores (Seleccionar Destino y Base)",
+            "⚡ Aplicar Hack de Reactor (Ejecutar Transposición)",
+            "🔙 VOLVER AL MENÚ DE INICIO"
+        }, nil, "⚙️ SECCIÓN: CONTROL DE CRIOCÁMARAS")
 
-        if rMenu == 1 then ReactorSetupMenu()
-        elseif rMenu == 2 then ReactorCommit()
+        if rMenu == 1 then MenuConfiguracionReactor()
+        elseif rMenu == 2 then ComprometerReactor()
         elseif rMenu == 3 or rMenu == nil then break end
     end
 end
 
--- =========================================================
--- SYSTEM MASTER ROUTER
--- =========================================================
-
-function ConsoleMain()
+function InterfazPrincipal()
     while true do
         if gg.isVisible() and gg.isClickedUiButton() then
             local main_choice = gg.choice({
-                "⚡ AUTOMATION CORE: Medlabs & Furnace Overrides",
-                "🧬 BIOMETRIC CENTER: Individual Matrix Swapper",
-                "🪐 REACTOR HUB: Cryogenic Chamber Control",
-                "📦 VAULT INJECTOR: Quantum Storage Bypass",
-                "⚙️ OPERATING SHELL: Heavy Kernel Overrides",
-                "⚙️ OPERATING SHELL: Orb Modification Utility",
-                "❌ TERMINATE CONNECTION"
-            }, nil, "::: NEXUS OPERATIVE SHELL v1.0 :::\nKernel Architecture: Intact")
+                "🔥 MODULO BANCO: Inyectar Laboratorios y Hornos",
+                "🧬 MUTANTE INDIVIDUAL: Cambiador Matricial Avanzado",
+                "🪐 REACTOR CORE: Control Completo de Criocámaras",
+                "📦 ALMACENAMIENTO: Inyector y Gestor de Cajas",
+                "🛡️ NÚCLEO INTERNO: Modificar Orbes Avanzadas",
+                "⚙️ OPERACIONES: Anulaciones y Parches de Servidor",
+                "❌ CERRAR INTERFAZ"
+            }, nil, "┌────────────────────────────────────────┐\n           NEXUS MATRIX CONTROL v1.0       \n└────────────────────────────────────────┘\nEstado del Sistema: Totalmente en Español\nCreador: Smith Luque")
 
-            if main_choice == 1 then OpenBankStructures()
-            elseif main_choice == 2 then IndividualSwapperEngine()
-            elseif main_choice == 3 then ReactorCoreEngine()
-            elseif main_choice == 4 then AdvancedBoxesMenu()
-            elseif main_choice == 5 then HeavyOverridesEngine()
-            elseif main_choice == 6 then QuickOrbsUtility()
+            if main_choice == 1 then AbrirEstructurasBanco()
+            elseif main_choice == 2 then MotorCambiadorIndividual()
+            elseif main_choice == 3 then MotorReactores()
+            elseif main_choice == 4 then MenuCajasAvanzado()
+            elseif main_choice == 5 then UtilidadOrbesRapidas()
+            elseif main_choice == 6 then MotorAnulacionesPesadas()
             elseif main_choice == 7 or main_choice == nil then
-                if gg.alert("Terminate operational shell context?", "YES", "NO") == 1 then
+                if gg.alert("¿Deseas cerrar la consola operativa?", "SÍ", "NO") == 1 then
                     os.exit()
                 end
             end
@@ -1117,4 +1071,4 @@ function ConsoleMain()
     end
 end
 
-InitTerminal()
+InterfazPrincipal()
